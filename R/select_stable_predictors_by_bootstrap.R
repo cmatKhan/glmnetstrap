@@ -8,7 +8,6 @@
 #'
 #' @param x A numeric matrix of predictors (samples × features).
 #' @param y A numeric response vector of length equal to \code{nrow(x)}.
-#' @param fold_classes A factor or vector used to create stratified folds.
 #' @param active_predictors Optional logical or numeric index indicating
 #'     which predictors to include. Default is all.
 #' @param ci_start Starting confidence interval for iterative selection
@@ -46,7 +45,6 @@
 #' @export
 select_stable_predictors_by_bootstrap <- function(
         x, y,
-        fold_classes,
         ci_start = 50,
         ci_final = 98,
         ci_step = 2,
@@ -70,7 +68,6 @@ select_stable_predictors_by_bootstrap <- function(
             n_bootstraps = n_bootstraps,
             x = x,
             y = y,
-            fold_classes = fold_classes,
             active_predictors = active_predictors,
             seed = seed,
             ...
@@ -111,7 +108,6 @@ select_stable_predictors_by_bootstrap <- function(
         n_bootstraps = n_bootstraps,
         x = x,
         y = y,
-        fold_classes = fold_classes,
         seed = if(!is.null(seed)) seed + 100 else NULL,
         ...
     )

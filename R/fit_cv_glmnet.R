@@ -12,8 +12,10 @@
 #' @param y A numeric response vector of length equal to the number of rows
 #'     in `x`.
 #' @param fold_classes Optional vector of class labels (same length as `y`)
-#'     used to stratify the cross-validation folds. If `NULL`, glmnet will
-#'     handle CV splitting. If this is provided, `nfolds` must also be passed
+#'     used to stratify the cross-validation folds. **NOTE**
+#'     see \code{\link[caret]{createFolds}} with regards to how numeric vs
+#'     factor levels are handled. If `NULL`, glmnet will handle CV splitting.
+#'     If this is provided, `nfolds` must also be passed
 #' @param active_predictors Optional logical or numeric index vector indicating
 #'     which predictors to include in the model. If `NULL`, all predictors are
 #'     used. If logical, must be the same length as `ncol(x)`. This argument
@@ -51,6 +53,11 @@ fit_cv_glmnet <- function(
         stop("if `fold_classes` is provided, `nfolds` must also be specified")
     }
     else if (!is.null(fold_classes)) {
+        if (!is.factor(fold_classes)){
+            warning(paste0("`fold_classes` is not a factor. Check the ",
+            "caret::createFolds() documentation to ensure that you ",
+            "really want to use non-factored classes"))
+        }
         set_optional_seed(seed)
         foldid <- caret::createFolds(as.factor(fold_classes),
                                      k = args$nfolds,

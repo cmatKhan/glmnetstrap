@@ -7,7 +7,6 @@
 select_stable_predictors_by_bootstrap(
   x,
   y,
-  fold_classes,
   ci_start = 50,
   ci_final = 98,
   ci_step = 2,
@@ -20,8 +19,6 @@ select_stable_predictors_by_bootstrap(
 \item{x}{A numeric matrix of predictors (samples × features).}
 
 \item{y}{A numeric response vector of length equal to \code{nrow(x)}.}
-
-\item{fold_classes}{A factor or vector used to create stratified folds.}
 
 \item{ci_start}{Starting confidence interval for iterative selection
 (default: 50).}

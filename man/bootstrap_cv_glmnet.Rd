@@ -21,8 +21,10 @@ column names.}
     \item{\code{y}}{A numeric response vector of length equal to the number of rows
 in \code{x}.}
     \item{\code{fold_classes}}{Optional vector of class labels (same length as \code{y})
-used to stratify the cross-validation folds. If \code{NULL}, glmnet will
-handle CV splitting. If this is provided, \code{nfolds} must also be passed}
+used to stratify the cross-validation folds. \strong{NOTE}
+see \code{\link[caret]{createFolds}} with regards to how numeric vs
+factor levels are handled. If \code{NULL}, glmnet will handle CV splitting.
+If this is provided, \code{nfolds} must also be passed}
     \item{\code{active_predictors}}{Optional logical or numeric index vector indicating
 which predictors to include in the model. If \code{NULL}, all predictors are
 used. If logical, must be the same length as \code{ncol(x)}. This argument

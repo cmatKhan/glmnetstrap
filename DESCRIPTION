@@ -15,3 +15,9 @@ Imports:
     glmnet,
     magrittr,
     tibble
+Suggests: 
+    ggplot2,
+    plotly,
+    purrr,
+    readr,
+    stringr
